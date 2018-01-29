@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>企业招聘信息管理</title>
+
+    <!-- Bootstrap -->
+    <link href="__PUBLIC__/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/pinlanhoutai.css">
+    <script src="__PUBLIC__/Admin/js/jquery-2.1.0.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="LTT_context_right">
+    <div class="page-header">
+        <h1>企业招聘信息管理 <small>Recruitment management</small></h1>
+    </div>
+    <!--模态-->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        添加招聘信息
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加招聘信息</h4>
+                </div>
+                <div class="modal-body">
+                    <!--form-->
+                    <form action="" method="post" id="add_form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">公司名称</label>
+                            <input type="text" class="form-control" name="name" placeholder="请填写完整公司名称" id="phone">
+                        </div>
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">招聘信息标题</label>
+                        <input type="text" class="form-control" name="title" placeholder="请填写标题" id="title">
+                    </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">招聘类型</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type"  value="0" id="jianzhi"> 兼职
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="quanzhi" value="1"> 全职
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">工资范围</label>
+                            <input type="text" name="salary_range" placeholder="格式：例如 3000-6000" >/
+                            <input type="text" name="time_unit" value="月" readonly="readonly" id="time_unit">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">客服名称</label>
+                            <input type="text" class="form-control" name="cs_name" placeholder="请填写企业客服" id="cs_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">客服电话</label>
+                            <input type="text" class="form-control" name="cs_phone" placeholder="请填写企业电话" id="cs_phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">任职要求</label>
+                            <textarea class="form-control" name="require" style="resize: none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">工作福利</label>
+                            <label class="checkbox-inline">
+                            <input type="checkbox" name="welfare[]" id="" value="奖金"> 奖金
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="welfare[]" id="baochi" value="包吃"> 包吃
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="welfare[]" id="baozhu" value="包住"> 包住
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="welfare[]" id="canbu" value="餐补"> 餐补
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">工作内容</label>
+                            <textarea class="form-control" name="job_content" style="resize: none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">工作时间</label>
+                            <textarea class="form-control" name="job_time" style="resize: none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">工作地点</label>
+                            <input type="text" class="form-control" name="province" placeholder="省" id="province">
+                            <input type="text" class="form-control" name="city" placeholder="市" id="city">
+                            <input type="text" class="form-control" name="county" placeholder="区" id="county">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">详细地址</label>
+                            <input type="text" class="form-control" name="address" placeholder="详细地址" id="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">注意事项</label>
+                            <textarea class="form-control" name="attention" style="resize: none;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">状态</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type"  value="0" id="daishenhe" checked> 待审核
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="fabu" value="1"> 发布
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="yincang" value="2"> 隐藏
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="type" id="weitongguo" value="3"> 审核未通过
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-default" id="add_btn">提交</button>
+                    </form>
+                    <!--form-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态-->
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th class=".LTT_th_th">招聘ID</th>
+            <th class=".LTT_th_th">企业ID</th>
+            <th class=".LTT_th_th">标题</th>
+            <th class=".LTT_th_th">招聘类型</th>
+            <th class=".LTT_th_th">工资范围</th>
+            <th class=".LTT_th_th">工资结算</th>
+            <th class=".LTT_th_th">客服姓名</th>
+            <th class=".LTT_th_th">客服电话</th>
+            <th class=".LTT_th_th">任职要求</th>
+            <th class=".LTT_th_th">工作福利</th>
+            <th class=".LTT_th_th">工作内容</th>
+            <th class=".LTT_th_th">工作时间</th>
+            <th class=".LTT_th_th">所在地</th>
+            <th class=".LTT_th_th">详细地址</th>
+            <th class=".LTT_th_th">注意事项</th>
+            <th class=".LTT_th_th">报名人数</th>
+            <th class=".LTT_th_th">发布时间</th>
+            <th class=".LTT_th_th">招聘信息状态</th>
+            <th>操作</th>
+
+        </tr>
+        <foreach name="list" item="recruit">
+        <tr>
+            <td>{$recruit.rec_id}</td>
+            <td>{$recruit.bus_id}</td>
+            <td>{$recruit.title}</td>
+            <td>{$recruit.type}</td>
+            <td>{$recruit.salary_range}</td>
+            <td>{$recruit.time_unit}</td>
+            <td>{$recruit.cs_name}</td>
+            <td>{$recruit.cs_phone}</td>
+            <td>{$recruit.require}</td>
+            <td>{$recruit.welfare}</td>
+            <td>{$recruit.job_content}</td>
+            <td>{$recruit.job_time}</td>
+            <td>{$recruit.province}-{$recruit.city}-{$recruit.county}</td>
+            <td>{$recruit.address}</td>
+            <td>{$recruit.attention}</td>
+            <td>{$recruit.apply_num}</td>
+            <td>{$recruit.rec_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$recruit.status}</td>
+            <td>
+                <!--edit-->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary edit_btn" data-toggle="modal" data-target="#myModal_edit">编辑</button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel_edit">编辑用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!--edit form-->
+                                <form action="" method="post" id="edit_form">
+                                    <input type="hidden" name="rec_id" id="rec_id" value="">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">公司名称</label>
+                                        <input type="text" class="form-control" name="name" placeholder="请填写完整公司名称" id="edit_name" readonly="readonly">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">招聘信息标题</label>
+                                        <input type="text" class="form-control" name="title" placeholder="请填写标题" id="edit_title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">招聘类型</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type"  value="0" id="edit_jianzhi" > 兼职
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="edit_quanzhi" value="1" > 全职
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">工资范围</label>
+                                        <input type="text" name="salary_range" placeholder="格式：例如 3000-6000" id="edit_salary_range">/
+                                        <input type="text" name="time_unit" value="月" readonly="readonly" id="edit_time_unit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">客服名称</label>
+                                        <input type="text" class="form-control" name="cs_name" placeholder="请填写企业客服" id="edit_cs_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">客服电话</label>
+                                        <input type="text" class="form-control" name="cs_phone" placeholder="请填写企业电话" id="edit_cs_phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">任职要求</label>
+                                        <textarea class="form-control" name="require" style="resize: none;" id="edit_require" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">工作福利</label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="welfare[]" id="edit_jiangjin" value="奖金"> 奖金
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="welfare[]" id="edit_baochi" value="包吃"> 包吃
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="welfare[]" id="edit_baozhu" value="包住"> 包住
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="welfare[]" id="edit_canbu" value="餐补"> 餐补
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">工作内容</label>
+                                        <textarea class="form-control" name="job_content" style="resize: none;" id="edit_job_content" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">工作时间</label>
+                                        <textarea class="form-control" name="job_time" style="resize: none;" id="edit_job_time" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">工作地点</label>
+                                        <input type="text" class="form-control" name="province" placeholder="省" id="edit_province">
+                                        <input type="text" class="form-control" name="city" placeholder="市" id="edit_city">
+                                        <input type="text" class="form-control" name="county" placeholder="区" id="edit_county">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">详细地址</label>
+                                        <input type="text" class="form-control" name="address" placeholder="详细地址" id="edit_address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">注意事项</label>
+                                        <textarea class="form-control" name="attention" style="resize: none;" id="edit_attention" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">状态</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type"  value="0" id="edit_daishenhe"> 待审核
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="edit_fabu" value="1"> 发布
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="edit_yincang" value="2"> 隐藏
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="edit_weitongguo" value="3"> 审核未通过
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-default " id="edit_btn">提交</button>
+                                </form>
+                                <!--edit form-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--edit-->
+                <!--delete-->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger del_btn" data-toggle="modal" data-target="#myModal_delete" >
+                    删除
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                您确认要删除这条数据吗？
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary delete_enter" >确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--delete-->
+            </td>
+        </tr>
+        </foreach>
+    </table>
+    </div>
+</div>
+<div>{$page}</div>
+<script>
+    $(document).ready(function () {
+        $(".LTT_left_nav li").click(function () {
+            $(this).find("ul").show().parent().siblings().find("ul").hide();
+        });
+        var l = $(".LTT_left_li li").length;
+        $(".LTT_left_li li").click(function () {
+            var mid = parseInt(this.dataset.mid);
+            console.log($(".LTT_context_right"));
+            console.log(mid);
+            $(".LTT_context_right").hide().eq(mid - 1).show();
+            $(".LTT_context1_right1").hide();
+        });
+
+
+        /*$(".LTT_left_li li").click(function(){
+            var l=$(".LTT_left_li li").length;
+            alert(l);
+            for(i=0;i<$(".LTT_left_li li").length;i++){
+              $(".LTT_context_right")[i].show().siblings().hide();
+            }
+        })*/
+
+    })
+</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+   $(function () {
+       $("#add_btn").click(function () {
+           $.post("{:U('Admin/Business/recruitAdd')}",$("#add_form").serialize(),function (data) {
+                if(data === "企业不存在"){
+                    alert("企业不存在，请重新填写！");
+                    window.location.reload();
+                }
+               if(data){
+                   alert("添加成功");
+                   window.location.reload();
+               }else{
+                   alert("添加失败");
+               }
+           });
+       });
+       $("#edit_btn").click(function () {
+            $.post("{:U('Admin/business/recruitEdit')}",$("#edit_form").serialize(),function (data) {
+//                console.log(data);
+                if(data === "企业不存在"){
+                    alert("企业不存在，请重新填写！");
+                    window.location.reload();
+                }
+                if(data){
+                    alert("编辑成功");
+                    window.location.reload();
+                }else{
+                    alert("编辑失败");
+                }
+            });
+       });
+       $("#jianzhi").click(function () {
+           $("#time_unit").val("天");
+       });
+       $("#quanzhi").click(function () {
+           $("#time_unit").val("月");
+       });
+       $("#edit_jianzhi").click(function () {
+           $("#edit_time_unit").val("天");
+       });
+       $("#edit_quanzhi").click(function () {
+           $("#edit_time_unit").val("月");
+       });
+       $(".edit_btn").click(function () {
+           var rec_id = $(this).parent().parent().children()[0].innerText;
+           $("#rec_id").val(rec_id);
+           $.post("{:U('Admin/Business/recruitDisplay')}",{rec_id:rec_id},function (data) {
+               $("#edit_name").val(data.name);
+               $("#edit_title").val(data.title);
+               $("#edit_salary_range").val(data.salary_range);
+               if(data.type === "0"){
+                   $("#edit_jianzhi").attr("checked",true);
+                   $("#edit_time_unit").val("天");
+               }else if(data.type === "1"){
+                   $("#edit_quanzhi").attr("checked",true);
+                   $("#edit_time_unit").val("月");
+               }
+               $("#edit_cs_name").val(data.cs_name);
+               $("#edit_cs_phone").val(data.cs_phone);
+               $("#edit_require").text(data.require);
+               $("#edit_job_content").text(data.job_content);
+               $("#edit_job_time").text(data.job_time);
+               $("#edit_province").val(data.province);
+               $("#edit_city").val(data.city);
+               $("#edit_county").val(data.county);
+               $("#edit_address").val(data.address);
+               $("#edit_attention").text(data.attention);
+               if(data.status === "0" ){
+                    $("#edit_daishenhe").attr('checked',true);
+               }else if (data.status === "1"){
+                   $("#edit_fabu").attr('checked',true);
+               }else if(data.status === "2"){
+                    $("#edit_yincang").attr('checked',true);
+               }else{
+                   $("#edit_weitongguo").attr('checked',true);
+               }
+               var welfare = data.welfare;
+               var arr = welfare.split("-");
+               for(var i=0;i<arr.length;i++){
+                   $("input:checkbox[name='welfare[]']").each(function () {
+                       if($(this).val() === arr[i]){
+                           $(this).attr('checked',true);
+                       }
+                   });
+               }
+           });
+       });
+       $(".del_btn").on("click",function () {
+           var rec_id = $(this).parent().parent().children()[0].innerText;
+           $(".delete_enter").click(function () {
+               $.post("{:U('Admin/business/deleteRecruit')}",{rec_id:rec_id},function (data) {
+                   if(data){
+                       alert("删除成功");
+                       window.location.reload();
+                   }else{
+                       alert("删除失败");
+                   }
+               });
+           });
+       });
+   });
+</script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="__PUBLIC__/Admin/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-width: 250px;
+    width: 100%;
+    height: 100%;
+}
+.bg_background img{
+    position: absolute;
+    top:0;
+    left: 0;
+    min-height: 500px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.container{
+    width: 500px;
+    height: 350px;
+    margin: 0 auto;
+    /*margin: 15% auto 10px;*/
+}
+.container h1{
+    margin-left: 25px;
+    color: white;
+}
+.container h1 span:first-child{
+    text-shadow: black 2px -2px 2px;
+}
+.container h1 span:nth-child(2){
+    font-size: 20px;
+}
+.login_form{
+    margin-top: 10px;
+    width: 100%;
+    height: 80%;
+    padding: 40px;
+    color: #5798a0;
+    box-sizing: border-box;
+    background: url('/Public/Admin/img/login/kuang.png') no-repeat;
+    background-size: 100% 100%;
+}
+.login_form h1{
+    color: #5798a0;
+    font-weight: normal;
+}
+.login_form label{
+    margin-left: 60px;
+    font-size: 25px;
+    line-height: 40px;
+}
+.btn{
+    width: 230px;
+    margin-top: 20px;
+    margin-left: 118px;
+    background-color: #f4a049;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    border:none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.login_form input{
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    vertical-align: bottom;
+    margin-top: 15px;
+    background-color: transparent;
+    outline: none;
+    border-radius: 5px;
+    border:1px solid #5798a0;
+}
