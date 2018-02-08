@@ -25,44 +25,6 @@
     <div class="page-header">
         <h1>企业报名管理 <small>Registration management</small></h1>
     </div>
-    <!--模态-->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        添加企业报名
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">添加报名信息</h4>
-                </div>
-                <div class="modal-body">
-                    <!--form-->
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">手机号码</label>
-                            <input type="text" class="form-control"  placeholder="MobilePhone" id="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">密码</label>
-                            <input type="password" class="form-control"  placeholder="Password" id="password">
-                        </div>
-                        <div class="form-group">
-                            <label>用户类型</label><br>
-                            <input type="radio" name="user_type" value="0">普通
-                            <input type="radio" name="user_type" value="1">企业
-                            <input type="radio" name="user_type" value="2">商家
-                            <input type="radio" name="user_type" value="3">工友
-                        </div>
-                        <button type="submit" class="btn btn-primary">提交</button>
-                    </form>
-                    <!--form-->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--模态-->
     <div class="table-responsive">
     <table class="table table-striped">
         <tr>
@@ -79,9 +41,11 @@
             <td><?php echo ($sign["worker_id"]); ?></td>
             <td><?php echo (date("Y-m-d H:i:s",$sign["time"])); ?></td>
             <td>
-                <?php if($sign["status"] == 1): ?><button class="btn btn-info " id="sign_btn">报名成功</button>
+                <?php if($sign["status"] == 0): ?><button class="btn btn-info " id="un_btn">未处理</button>
+                    <?php elseif($sign["status"] == 1): ?>
+                    <button class="btn btn-success " id="sign_btn">报名成功</button>
                     <?php else: ?>
-                    <button class="btn btn-danger " id="un_btn">未处理</button><?php endif; ?>
+                    <button class="btn btn-danger " id=fail_btn">报名失败</button><?php endif; ?>
             </td>
             <td>
 
